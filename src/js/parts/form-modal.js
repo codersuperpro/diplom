@@ -5,11 +5,11 @@ const formModal=()=>{
         failure: 'Что-то пошло не так...'
     };
 
-    let form = document.getElementsByClassName('main-form')[0],
-        input = document.getElementsByTagName('input'),
+    // let form = document.querySelectorAll('.form'),
+    //     input = form.getElementsByTagName('input_fff'),
         
-        statusMessage = document.createElement('div');
-        statusMessage.classList.add('status');
+    //     statusMessage = document.createElement('div');
+    //     statusMessage.classList.add('status');
 
     $('.phone_form').keydown(function(){
         $(this).val($(this).val().replace(/[^\d]|'+'/g, '').slice(0, 11));
@@ -61,7 +61,7 @@ const formModal=()=>{
                     .then(clearInput)
     });
     }
-    sendForm(form);
+    // sendForm(form);
 
 };
 

@@ -4,28 +4,42 @@ const calc=()=>{
         material = document.getElementById('material'),
         options = document.getElementById('options'),
         totalValue = document.querySelector('.calc-price'),
-        personsSum = 0,
-        daysSum = 0,
-        total = 0;
+        promocode = document.querySelector('.promocode'),
+        text ="Для расчета нужно выбрать размер картины и материал картины";
+        totalValue.innerHTML = text;
 
-        totalValue.innerHTML = "Для расчета нужно выбрать размер картины и материал картины";
-        let text ="Для расчета нужно выбрать размер картины и материал картины";
-
-        size.addEventListener('change', function() {
-            if (material.value == "Выберите материал картины") {
+        size.addEventListener('change', ()=> {
+            if (material.options[material.selectedIndex].value == 0) {
                 totalValue.innerHTML = text;
             } else {
-                totalValue.innerHTML = this.options[this.selectedIndex].value * this.options[this.selectedIndex].value;
+                totalValue.innerHTML = +size.options[size.selectedIndex].value * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value;
             }
         });
-        material.addEventListener('change', function() {
-            if (size.value == "Выберите размер картины") {
+        material.addEventListener('change', ()=> {
+            if (size.options[size.selectedIndex].value == 0) {
                 totalValue.innerHTML = text;
             } else {
-                totalValue.innerHTML = this.options[this.selectedIndex].value * this.options[this.selectedIndex].value;
+                totalValue.innerHTML = +size.options[size.selectedIndex].value * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value;
             }
         });
-
-};
+        options.addEventListener('change', ()=> {
+            if (size.options[size.selectedIndex].value == 0 || material.options[material.selectedIndex].value == 0) {
+                totalValue.innerHTML = text;
+            } else {
+                totalValue.innerHTML = +size.options[size.selectedIndex].value * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value;
+            }
+        });
+        $('#price').click(function() {
+            if (size.options[size.selectedIndex].value == 0 ||  material.options[material.selectedIndex].value == 0) {
+                totalValue.innerHTML = text;
+            }});
+        promocode.addEventListener('change', ()=> {
+            if (promocode.value == 'IWANTPOPART') {
+                totalValue.innerHTML = (+size.options[size.selectedIndex].value * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value)/100*70;
+            } else {
+                totalValue.innerHTML = +size.options[size.selectedIndex].value * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value;
+            }
+        });
+}
 
 module.exports = calc;

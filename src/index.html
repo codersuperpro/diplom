@@ -192,7 +192,7 @@
 			</div>
 		</div>
 	</section>
-	<section class=calc>
+	<section class=calc id="price">
 		<div class=container>
 			<p class=p-heading>Калькулятор</p>
 			<h2>Рассчитайте стоимость и получите скидку 30%</h2>
@@ -206,14 +206,14 @@
 							<input type=file name=upload>
 						</div>
 						<select id=size>
-							<option >Выберите размер картины</option>
+							<option value="0" >Выберите размер картины</option>
 							<option value="500" >40x50</option>
 							<option value="1000" >50x70</option>
 							<option value="1500">70x70</option>
 							<option value="2000">70x100</option>
 						</select>
 						<select id=material>
-							<option >Выберите материал картины</option>
+							<option value="0" >Выберите материал картины</option>
 							<option  value="1" title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
 							<option  value="2" title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
 							<option  value="3" title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
@@ -564,15 +564,17 @@
 			<p class=p-heading>Остались вопросы?</p>
 			<h2>Получите консультацию художника!</h2>
 			<div class="col-md-10 col-md-offset-1">
-				<form class=form action="#">
-					<div class=input-wrapper>
-						<input type=text name=name placeholder="Ваше имя" required>
-						<input class="phone_form" type=text name=phone placeholder="Ваш телефон" required>
-						<input type=text name=email placeholder="Ваш E-mail">
-						<input class=input-text name=message type=text placeholder="Задайте ваш вопрос здесь" required>
-					</div>
-					<button class="button button-order">Получить консультацию</button>
-				</form>
+				<div class=main-form>
+					<form class=form action="#">
+							<div class=input-wrapper>
+								<input type=text name=name placeholder="Ваше имя" required>
+								<input class="phone_form" type=text name=phone placeholder="Ваш телефон" required>
+								<input type=text name=email placeholder="Ваш E-mail">
+								<input class=input-text name=message type=text placeholder="Задайте ваш вопрос здесь" required>
+							</div>
+						<button class="button button-order">Получить консультацию</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</section>
