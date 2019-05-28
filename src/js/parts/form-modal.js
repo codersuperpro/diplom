@@ -6,6 +6,7 @@ const formModal=()=>{
     };
     let form = document.querySelectorAll('.form'),
         input = document.getElementsByTagName('input'),
+        comments = document.getElementsByTagName('textarea'),
         statusMessage = document.createElement('div');
         statusMessage.classList.add('status');
 
@@ -43,11 +44,17 @@ const formModal=()=>{
                 input[i].value = '';
             }
         }
+        const clearComment=()=> {
+            for (let i = 0; i < comments.length; i++) {
+                comments[i].value = '';
+            }
+        }
         postData(formData)
             .then(()=> statusMessage.innerHTML = message.loading)
             .then(()=> statusMessage.innerHTML = message.success)
             .catch(()=> statusMessage.innerHTML = message.failure)
             .then(clearInput)
+            .then(clearComment)
     }));
 
     $('.phone_form').keydown(function(){

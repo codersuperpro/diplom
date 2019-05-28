@@ -12,19 +12,23 @@ const slider=()=> {
         if (n < 1) {
             slideIndex = slides.length;
         }
+        $(".feedback-slider-item").fadeIn(1000);
         slides.forEach((item) => item.style.display = 'none');
-        slides[slideIndex - 1].style.display = 'block';
+        slides[slideIndex - 1].style.display = 'block';   
     } 
     function plusSlides(n) {
         showSlides(slideIndex += n);
     }
-    
     prev.addEventListener('click', ()=> {
         plusSlides(-1);
+        clearInterval(slideRun);
     });
     next.addEventListener('click', ()=> {
         plusSlides(1);
+        clearInterval(slideRun);
     });
-
+    let = slideRun = setInterval(() => {
+        plusSlides(1);
+      }, 6000);
 }
 module.exports = slider;

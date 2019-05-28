@@ -7,8 +7,7 @@ window.addEventListener('DOMContentLoaded', function() {
         formModal = require('./parts/form-modal.js'),
         calc = require('./parts/calc.js'),
         filtr = require('./parts/filtr.js'),
-        accordion = require('./parts/accordion.js'),
-        mainForm = require('./parts/main-form.js');
+        accordion = require('./parts/accordion.js');
 
 
     modalConsultation();
@@ -19,6 +18,5 @@ window.addEventListener('DOMContentLoaded', function() {
     calc();
     filtr();
     accordion();
-    mainForm();
 
 });

@@ -8,11 +8,15 @@ const calc=()=>{
         text ="Для расчета нужно выбрать размер картины и материал картины";
         totalValue.innerHTML = text;
 
+        function calcSum(selectedIndex) {
+            return(value);
+        }
+
         size.addEventListener('change', ()=> {
             if (material.options[material.selectedIndex].value == 0) {
                 totalValue.innerHTML = text;
             } else {
-                totalValue.innerHTML = +size.options[size.selectedIndex].value * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value;
+                totalValue.innerHTML = +size.options.calcSum(selectedIndex) * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value;
             }
         });
         material.addEventListener('change', ()=> {

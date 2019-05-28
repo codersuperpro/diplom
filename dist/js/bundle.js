@@ -116,10 +116,11 @@ const accordion=()=>{
         let target = event.target;
         if (target && target.classList.contains('accordion-heading-span')) {
             for(let i = 0; i < accordionHeadingSpan.length; i++) {
+                accordionHeadingSpan[i].style.color = "#333";
                  if (target == accordionHeadingSpan[i]) {
-                    accordionHeadingSpan[i].style.color = "#d24dca";
                     hideAcc(0);
                     showAcc(i);
+                    accordionHeadingSpan[i].style.color = "#d24dca";
                     break;
                 }
             }
@@ -149,11 +150,15 @@ const calc=()=>{
         text ="Для расчета нужно выбрать размер картины и материал картины";
         totalValue.innerHTML = text;
 
+        function calcSum(selectedIndex) {
+            return(value);
+        }
+
         size.addEventListener('change', ()=> {
             if (material.options[material.selectedIndex].value == 0) {
                 totalValue.innerHTML = text;
             } else {
-                totalValue.innerHTML = +size.options[size.selectedIndex].value * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value;
+                totalValue.innerHTML = +size.options.calcSum(selectedIndex) * +material.options[material.selectedIndex].value + +options.options[options.selectedIndex].value;
             }
         });
         material.addEventListener('change', ()=> {
@@ -230,6 +235,7 @@ const formModal=()=>{
     };
     let form = document.querySelectorAll('.form'),
         input = document.getElementsByTagName('input'),
+        comments = document.getElementsByTagName('textarea'),
         statusMessage = document.createElement('div');
         statusMessage.classList.add('status');
 
@@ -267,11 +273,17 @@ const formModal=()=>{
                 input[i].value = '';
             }
         }
+        const clearComment=()=> {
+            for (let i = 0; i < comments.length; i++) {
+                comments[i].value = '';
+            }
+        }
         postData(formData)
             .then(()=> statusMessage.innerHTML = message.loading)
             .then(()=> statusMessage.innerHTML = message.success)
             .catch(()=> statusMessage.innerHTML = message.failure)
             .then(clearInput)
+            .then(clearComment)
     }));
 
     $('.phone_form').keydown(function(){
@@ -282,21 +294,6 @@ const formModal=()=>{
 
 
 module.exports = formModal;
-
-/***/ }),
-
-/***/ "./src/js/parts/main-form.js":
-/*!***********************************!*\
-  !*** ./src/js/parts/main-form.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-const mainForm=()=>{
-
-};
-
-module.exports = mainForm;
 
 /***/ }),
 
@@ -396,20 +393,24 @@ const slider=()=> {
         if (n < 1) {
             slideIndex = slides.length;
         }
+        $(".feedback-slider-item").fadeIn(1000);
         slides.forEach((item) => item.style.display = 'none');
-        slides[slideIndex - 1].style.display = 'block';
+        slides[slideIndex - 1].style.display = 'block';   
     } 
     function plusSlides(n) {
         showSlides(slideIndex += n);
     }
-    
     prev.addEventListener('click', ()=> {
         plusSlides(-1);
+        clearInterval(slideRun);
     });
     next.addEventListener('click', ()=> {
         plusSlides(1);
+        clearInterval(slideRun);
     });
-
+    let = slideRun = setInterval(() => {
+        plusSlides(1);
+      }, 6000);
 }
 module.exports = slider;
 
@@ -431,8 +432,7 @@ window.addEventListener('DOMContentLoaded', function() {
         formModal = __webpack_require__(/*! ./parts/form-modal.js */ "./src/js/parts/form-modal.js"),
         calc = __webpack_require__(/*! ./parts/calc.js */ "./src/js/parts/calc.js"),
         filtr = __webpack_require__(/*! ./parts/filtr.js */ "./src/js/parts/filtr.js"),
-        accordion = __webpack_require__(/*! ./parts/accordion.js */ "./src/js/parts/accordion.js"),
-        mainForm = __webpack_require__(/*! ./parts/main-form.js */ "./src/js/parts/main-form.js");
+        accordion = __webpack_require__(/*! ./parts/accordion.js */ "./src/js/parts/accordion.js");
 
 
     modalConsultation();
@@ -443,7 +443,6 @@ window.addEventListener('DOMContentLoaded', function() {
     calc();
     filtr();
     accordion();
-    mainForm();
 
 });
 

@@ -21,10 +21,11 @@ const accordion=()=>{
         let target = event.target;
         if (target && target.classList.contains('accordion-heading-span')) {
             for(let i = 0; i < accordionHeadingSpan.length; i++) {
+                accordionHeadingSpan[i].style.color = "#333";
                  if (target == accordionHeadingSpan[i]) {
-                    accordionHeadingSpan[i].style.color = "#d24dca";
                     hideAcc(0);
                     showAcc(i);
+                    accordionHeadingSpan[i].style.color = "#d24dca";
                     break;
                 }
             }
