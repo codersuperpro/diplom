@@ -6,34 +6,29 @@ const formModal=()=>{
     };
 
     // let form = document.querySelectorAll('.form'),
-    //     input = form.getElementsByTagName('input_fff'),
+    //     input = document.getElementsByTagName('input'),
         
     //     statusMessage = document.createElement('div');
     //     statusMessage.classList.add('status');
 
-    $('.phone_form').keydown(function(){
-        $(this).val($(this).val().replace(/[^\d]|'+'/g, '').slice(0, 11));
-    }).mask("+7 (999) 999-99-99");
-
-    const sendForm=(elem)=> {
-        elem.addEventListener('submit', (e)=> {
+    function sendForm(elem) {
+        elem.addEventListener('submit', function(e) {
             e.preventDefault();
             elem.appendChild(statusMessage);
-                
-                let formData = new FormData(elem);
+            let formData = new FormData(elem);
                 let obj = {};
                 formData.forEach((value,key)=> {
                     obj[key] = value;
                 });
                 let json = JSON.stringify(obj);
 
-                function postData(data) {
-                    return new Promise((resolve,reject)=> {
+                function postData() {
+                    return new Promise((resolve, reject)=> {
                         let request = new XMLHttpRequest();
                         request.open('POST', 'server.php');
                         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
-                        request.onreadystatechange = ()=> {
+                        request.onreadystatechange = function() {
                             if (request.readyState < 4) {
                                 resolve()
                             } else if(request.readyState === 4) {
@@ -63,7 +58,11 @@ const formModal=()=>{
     }
     // sendForm(form);
 
-};
+    $('.phone_form').keydown(function(){
+        $(this).val($(this).val().replace(/[^\d]|'+'/g, '').slice(0, 11));
+    }).mask("+7 (999) 999-99-99");
+
+}
 
 
 module.exports = formModal;

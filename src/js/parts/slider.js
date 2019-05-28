@@ -18,6 +18,7 @@ const slider=()=> {
     function plusSlides(n) {
         showSlides(slideIndex += n);
     }
+    
     prev.addEventListener('click', ()=> {
         plusSlides(-1);
     });
@@ -25,8 +26,5 @@ const slider=()=> {
         plusSlides(1);
     });
 
-
 }
-
-
 module.exports = slider;
