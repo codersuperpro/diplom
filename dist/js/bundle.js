@@ -200,20 +200,28 @@ module.exports = calc;
 /***/ (function(module, exports) {
 
 const filtr=()=>{
-    let menu = document.querySelector('.portfolio-menu'),
-        portfolioWrapper = document.querySelector('.portfolio-wrapper');
 
-    menu.addEventListener('click', function() {
-        console.log(this.value);
-        let alls = portfolioWrapper.getElementsByClassName('all');
-        for (let i=0; i<alls.length; i++) {
-            if (alls[i].classList.contains(this.value)) {
-                alls[i].style.display = 'block';
-            } else {
-                alls[i].style.display = 'none';
-            }
-        }
-    }); 
+    $(function() {
+
+        let newSelection = "";
+    
+        $(".portfolio-menu li").click(function(){
+    
+            $(".portfolio-wrapper").fadeTo(200, 0.10);
+    
+            $(".portfolio-menu li").removeClass("active");
+            $(this).addClass("active");
+    
+            newSelection = $(this).attr("value");
+    
+            $(".portfolio-block").not("."+newSelection).slideUp();
+            $("."+newSelection).slideDown();
+    
+            $(".portfolio-wrapper").fadeTo(600, 1);
+    
+        });
+    
+    });
 }
 
 module.exports = filtr;
