@@ -1,5 +1,4 @@
 const filtr=()=>{
-
     $(function() {
 
         let newSelection = "";
@@ -15,12 +14,14 @@ const filtr=()=>{
     
             $(".portfolio-block").not("."+newSelection).slideUp();
             $("."+newSelection).slideDown();
+
+            // $(".portfolio-block").is("."+newSelection, function(){
+            //     $(".portfolio-no").css({"display":"block"});
+            // });
     
             $(".portfolio-wrapper").fadeTo(600, 1);
-    
         });
-    
-    });
+    }); 
 }
 
 module.exports = filtr;

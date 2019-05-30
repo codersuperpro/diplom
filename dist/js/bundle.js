@@ -200,7 +200,6 @@ module.exports = calc;
 /***/ (function(module, exports) {
 
 const filtr=()=>{
-
     $(function() {
 
         let newSelection = "";
@@ -216,12 +215,14 @@ const filtr=()=>{
     
             $(".portfolio-block").not("."+newSelection).slideUp();
             $("."+newSelection).slideDown();
+
+            // $(".portfolio-block").is("."+newSelection, function(){
+            //     $(".portfolio-no").css({"display":"block"});
+            // });
     
             $(".portfolio-wrapper").fadeTo(600, 1);
-    
         });
-    
-    });
+    }); 
 }
 
 module.exports = filtr;
@@ -410,11 +411,10 @@ const slider=()=> {
     }
     prev.addEventListener('click', ()=> {
         plusSlides(-1);
-        clearInterval(slideRun);
+
     });
     next.addEventListener('click', ()=> {
         plusSlides(1);
-        clearInterval(slideRun);
     });
     let = slideRun = setInterval(() => {
         plusSlides(1);

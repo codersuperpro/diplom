@@ -21,11 +21,10 @@ const slider=()=> {
     }
     prev.addEventListener('click', ()=> {
         plusSlides(-1);
-        clearInterval(slideRun);
+
     });
     next.addEventListener('click', ()=> {
         plusSlides(1);
-        clearInterval(slideRun);
     });
     let = slideRun = setInterval(() => {
         plusSlides(1);
